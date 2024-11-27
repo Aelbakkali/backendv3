@@ -1,11 +1,21 @@
-FROM openjdk:8u151-jdk-alpine3.7
+# Use the official Node.js image as a base
+FROM node:18
 
-EXPOSE 8070
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-ENV APP_HOME /usr/src/app
+# Copy package.json and package-lock.json first
+# This allows Docker to cache dependencies if they haven't changed
+COPY package*.json ./
 
-COPY target/shopping-cart-0.0.1-SNAPSHOT.jar $APP_HOME/app.jar
+# Install dependencies
+RUN npm install
 
-WORKDIR $APP_HOME
+# Copy the rest of the application files
+COPY . .
 
-ENTRYPOINT exec java -jar app.jar
+# Expose the application port (adjust based on your app)
+EXPOSE 3000
+
+# Start the application
+CMD ["npm", "start"]
