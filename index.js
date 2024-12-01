@@ -7,7 +7,7 @@ const app = express()
 const Routes = require("./routes/route.js")
 
 const PORT = process.env.PORT || 5000
-const MONGO_URI = 'mongodb://127.0.0.1:27017/school'; // Assurez-vous que ce nom de base existe
+const MONGO_URI = 'mongodb+srv://admin:admin@schooldata.ki5zh.mongodb.net/?retryWrites=true&w=majority&appName=schooldata'; // Assurez-vous que ce nom de base existe
 
 dotenv.config();
 
@@ -28,5 +28,5 @@ mongoose
 app.use('/', Routes);
 
 app.listen(PORT, () => {
-    console.log(`Server started at port no. ${PORT}`)
+    console.log(Server started at port no. ${PORT})
 })
